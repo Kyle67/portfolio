@@ -1,3 +1,4 @@
+import NavBar from "@/components/home/NavBar";
 import { Flex, Heading, Text, chakra } from "@chakra-ui/react";
 import Head from "next/head";
 
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/websiteIcon.png" />
       </Head>
       <MainContainer>
+        <NavBar />
         <Heading>Kyle Milburn</Heading>
         <Flex>
           <Text>
@@ -57,5 +59,6 @@ export default function Home() {
 const MainContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
+    backgroundColor: "#77d3f730",
   },
 });
