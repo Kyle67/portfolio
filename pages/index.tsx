@@ -1,4 +1,5 @@
 import NavBar from "@/components/home/NavBar";
+import Terminal from "@/components/home/Terminal";
 import { Flex, Heading, Text, chakra } from "@chakra-ui/react";
 import Head from "next/head";
 
@@ -13,21 +14,24 @@ export default function Home() {
       </Head>
       <MainContainer>
         <NavBar />
-        <Heading>Kyle Milburn</Heading>
+        <Heading color="whiteAlpha.800">Kyle Milburn</Heading>
         <Flex>
-          <Text>
+          <Text minW="40%" color="whiteAlpha.800">
             Hi! My name is Kyle & I&apos;m a Web & Mobile developer who loves to
             work on projects that will actually benefit its users. I pride
             myself on keeping a high-quality standard across all projects &
             believe that every project is a learning experience that expands my
             knowledge and improves my future practices.
           </Text>
+          <Terminal />
           {/**
            * // TODO: Fancy animation that slides in from right and shows the more info (probably a whole differnt page)
            */}
-          <Text>More about my journey &gt;&gt;</Text>
+          <Text color="whiteAlpha.800" alignSelf="center">
+            More about me &gt;&gt;
+          </Text>
         </Flex>
-        <Flex flexDir="column">
+        {/* <Flex flexDir="column">
           <Text>
             In 2013 my programming interest really sparked with my interest in
             how games worked and even briefly looking at Minecraft server plugin
@@ -50,7 +54,7 @@ export default function Home() {
             my passion for web development (which prior to that I hadn&apos;t
             been all that interested in.)
           </Text>
-        </Flex>
+        </Flex> */}
       </MainContainer>
     </>
   );
@@ -59,6 +63,6 @@ export default function Home() {
 const MainContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
-    backgroundColor: "#77d3f730",
+    backgroundColor: "#0E0D16",
   },
 });

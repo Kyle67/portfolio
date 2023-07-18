@@ -18,5 +18,6 @@ const NavBarContainer = chakra(Flex, {
     gap: { base: "20px", md: "5%" },
     h: "50px",
     alignItems: "center",
+    color: "whiteAlpha.900",
   },
 });
