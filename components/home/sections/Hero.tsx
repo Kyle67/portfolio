@@ -1,7 +1,7 @@
-import { Flex, Heading, Text, chakra } from "@chakra-ui/react";
-import Terminal from "../Terminal";
+import LinkHeading from "@/components/LinkHeading";
+import { Flex, Text, chakra } from "@chakra-ui/react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import Link from "next/link";
+import Terminal from "../Terminal";
 
 // TODO: Could replace the main text with
 /**
@@ -14,9 +14,7 @@ const Hero = () => {
   return (
     <MainContainer>
       <Flex flexDir="column" rowGap="20px">
-        <Link id="about" href="#about">
-          <Heading color="whiteAlpha.800">Kyle Milburn</Heading>
-        </Link>
+        <LinkHeading heading="About" customText="Kyle Milburn" />
         <Text color="whiteAlpha.800">
           Hi! My name is Kyle and I&apos;m a Web & Mobile developer. I pride
           myself on keeping a high-quality standard across all projects &

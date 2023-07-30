@@ -3,9 +3,10 @@ import Link from "next/link";
 
 interface LinkHeadingProps {
   heading: string;
+  customText?: string;
 }
 
-const LinkHeading = ({ heading }: LinkHeadingProps) => {
+const LinkHeading = ({ heading, customText }: LinkHeadingProps) => {
   const lowercaseHeading = heading.toLowerCase();
 
   return (
@@ -14,7 +15,7 @@ const LinkHeading = ({ heading }: LinkHeadingProps) => {
       href={`#${lowercaseHeading}`}
       style={{ alignSelf: "flex-start" }}
     >
-      <Heading>{heading}</Heading>
+      <Heading>{customText ?? heading}</Heading>
     </Link>
   );
 };

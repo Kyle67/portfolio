@@ -1,20 +1,14 @@
-import { Flex, Heading, chakra } from "@chakra-ui/react";
+import LinkHeading from "@/components/LinkHeading";
+import { SectionMainContainer } from "@/components/StyledComponents";
+import { educationData, experienceData } from "@/consts/experience";
+import { Flex, chakra } from "@chakra-ui/react";
 import ExperienceEducationBox from "../ExperienceEducationBox";
 import ExperienceWorkBox from "../ExperienceWorkBox";
-import { educationData, experienceData } from "@/consts/experience";
-import Link from "next/link";
-import { SectionMainContainer } from "@/components/StyledComponents";
 
 const Experience = () => {
   return (
     <SectionMainContainer>
-      <Link
-        id="experience"
-        href="#experience"
-        style={{ alignSelf: "flex-start" }}
-      >
-        <Heading size="lg">Experience</Heading>
-      </Link>
+      <LinkHeading heading="Experience" />
       <ExperienceBoxContainer>
         {experienceData.map((experienceInfo) => (
           <ExperienceWorkBox
@@ -23,9 +17,7 @@ const Experience = () => {
           />
         ))}
       </ExperienceBoxContainer>
-      <Heading size="lg" alignSelf="flex-start">
-        Education
-      </Heading>
+      <LinkHeading heading="Education" />
       <ExperienceBoxContainer>
         {educationData.map((experienceInfo) => (
           <ExperienceEducationBox

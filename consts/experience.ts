@@ -23,7 +23,7 @@ export interface EducationData {
   image: string;
 }
 
-export const experienceData = [
+export const experienceData: ExperienceData[] = [
   {
     name: "Labrys",
     position: "Junior Software Developer",
@@ -38,7 +38,7 @@ export const experienceData = [
   },
 ];
 
-export const educationData = [
+export const educationData: EducationData[] = [
   {
     course: {
       short: "Bachelors of Mathematics/Bachelors of Information Technology",
