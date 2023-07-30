@@ -1,4 +1,27 @@
-// TODO: Interfaces for these
+import { DurationObject, ShortLongObject } from "@/types";
+
+export interface ExperienceData {
+  name: string;
+  position: string;
+  duration: DurationObject;
+  technologies: ShortLongObject;
+  keyLearnings: string[];
+  image: string;
+}
+
+export interface UnitObject {
+  unitCode: string;
+  unitName: string;
+}
+export interface EducationData {
+  course: ShortLongObject;
+  majors: string[];
+  duration: DurationObject;
+  gpa: number;
+  keyUnits: UnitObject[];
+  keyLearnings: string[];
+  image: string;
+}
 
 export const experienceData = [
   {

@@ -24,9 +24,9 @@ const Hero = () => {
           knowledge and improves my future practices.
         </Text>
       </Flex>
-      <Flex w="2000px" h="300px">
-        <Terminal />
-      </Flex>
+
+      <Terminal />
+
       {/**
        * // TODO: Fancy animation that slides in from right and shows the more info (probably a whole differnt page)
        */}
@@ -37,7 +37,7 @@ const Hero = () => {
         <MdKeyboardDoubleArrowRight size={40} />
       </Flex>
 
-      {/* <Flex flexDir="column">
+      {/* <Flex flexDir="column"> // TODO: Move to other animated about me component when created
           <Text>
             In 2013 my programming interest really sparked with my interest in
             how games worked and even briefly looking at Minecraft server plugin

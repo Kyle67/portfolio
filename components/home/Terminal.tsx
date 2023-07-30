@@ -1,4 +1,4 @@
-import { Flex, Input, Text } from "@chakra-ui/react";
+import { Flex, Input, Text, chakra } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import NewLineText from "./NewLineText";
 
@@ -18,8 +18,13 @@ const terminalText = [
 
 // TODO: Add blinking line to show active
 
+// TODO: Clicking anywhere in the box should focus the textinput used as the command line
+
 const terminalGeneralDelay = 0; // 50
 const terminalLoadingDelay = 0; // 10
+
+const loadedChar = "█";
+const unloadedChar = "▒";
 
 const Terminal = () => {
   const [text, setText] = useState("");
@@ -27,12 +32,43 @@ const Terminal = () => {
   const [runTerminal, setRunTerminal] = useState(false);
   const [command, setCommand] = useState("");
 
-  const getProgressBarUpdate = (percentage: number) => {
-    const barsShown = Math.floor(percentage / 10);
-    return `[${"█".repeat(barsShown)}${"▒".repeat(
-      10 - barsShown
-    )}] ${percentage}%`;
+  const commands: Record<string, () => void> = {
+    help: () =>
+      setText(
+        (prev) =>
+          prev +
+          `You may type one of the following commands:
+    - help
+    - wow
+    - test
+    - ping`
+      ),
+    ping: () => setText((prev) => prev + "Pong!"),
   };
+
+  const commandProxyHandler: ProxyHandler<Record<string, () => void>> = {
+    get: (target, property) => {
+      return (
+        target[property as string] ??
+        (() =>
+          setText(
+            (prev) =>
+              prev +
+              "Command not recognized, please enter a valid command or type `help` for some suggestions"
+          ))
+      );
+    },
+  };
+
+  const commandProxy = new Proxy(commands, commandProxyHandler);
+
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!textRef.current) return;
+
+    textRef.current.scrollTop = textRef.current.scrollHeight; // TODO: Should be able to scroll back up to see previous commands & such
+  }, [text, isWaiting]);
 
   useEffect(() => {
     // TODO: To set this up to automatically happen, need to fix useEffect running twice on startup
@@ -55,6 +91,13 @@ const Terminal = () => {
           }, terminalLoadingDelay);
         });
       }
+    };
+
+    const getProgressBarUpdate = (percentage: number) => {
+      const barsShown = Math.floor(percentage / 10);
+      return `[${loadedChar.repeat(barsShown)}${unloadedChar.repeat(
+        10 - barsShown
+      )}] ${percentage}%`;
     };
 
     const terminalStartup = async () => {
@@ -85,55 +128,19 @@ const Terminal = () => {
     setText((prev) => prev + `> ${command}\n`);
     setIsWaiting(true);
     // TODO: Update loading state, display relevant text
-    switch (command) {
-      case "help":
-        setText(
-          (prev) =>
-            prev +
-            `You may type one of the following commands:
-        - help
-        - wow
-        - test
-        - ping`
-        );
-        break;
-      case "ping":
-        setText((prev) => prev + "Pong!");
-        break;
-      default: // TODO: Way to make this text red?
-        setText(
-          (prev) =>
-            prev +
-            "Command not recognized, please enter a valid command or type `help` for some suggestions"
-        );
-    }
+
+    commandProxy[command]();
+
     setText((prev) => prev + "\n");
     setIsWaiting(false);
     setCommand("");
   };
 
-  const textRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!textRef.current) return;
-
-    textRef.current.scrollTop = textRef.current.scrollHeight; // TODO: Should be able to scroll back up to see previous commands & such
-  }, [text, isWaiting]);
-
   // TODO: Could add bar to top of box like a window (i.e. have Command Prompt in title in bar at top)
 
   return (
-    <Flex
+    <TerminalContainer
       ref={textRef}
-      bgColor="#141414" // TODO: Move this to a styled component
-      border="1px solid black"
-      flexGrow={1}
-      mx="20px"
-      w="100%"
-      color="whiteAlpha.800"
-      flexDir="column"
-      maxH="300px"
-      overflowY="hidden"
       onClick={() => {
         setRunTerminal(true);
       }}
@@ -148,7 +155,7 @@ const Terminal = () => {
       {!isWaiting && (
         <Flex>
           <Text>{">"}</Text>
-          <Input // TODO: Autofocus
+          <Input
             autoFocus
             variant="unstyled"
             paddingLeft="5px"
@@ -160,8 +167,23 @@ const Terminal = () => {
           />
         </Flex>
       )}
-    </Flex>
+    </TerminalContainer>
   );
 };
 
 export default Terminal;
+
+const TerminalContainer = chakra(Flex, {
+  baseStyle: {
+    backgroundColor: "#141414",
+    border: "1px solid black",
+    flexGrow: 1,
+    marginX: "20px",
+    width: "2000px",
+    height: "300px",
+    color: "whiteAlpha.800",
+    flexDirection: "column",
+    maxHeight: "300px",
+    overflowY: "hidden",
+  },
+});

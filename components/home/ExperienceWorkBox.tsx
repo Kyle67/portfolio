@@ -1,36 +1,33 @@
+import { ExperienceData } from "@/consts/experience";
 import {
   Flex,
-  List,
-  ListItem,
   Modal,
   ModalBody,
   ModalCloseButton,
-  ModalContent,
   ModalHeader,
   ModalOverlay,
   Text,
-  UnorderedList,
   chakra,
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { BaseModalContent } from "../BaseComponents";
-import { experienceData } from "@/consts/experience";
+import HeadingList from "../HeadingList";
+import { StyledModalContent } from "../StyledComponents";
 
 interface ExperienceWorkBoxProps {
-  experienceInfo: (typeof experienceData)[number];
+  experienceInfo: ExperienceData;
 }
 
-const ExperienceWorkBox = ({
-  experienceInfo: {
+const ExperienceWorkBox = ({ experienceInfo }: ExperienceWorkBoxProps) => {
+  const {
     name,
     position,
     duration: { start, end },
     technologies,
     image,
     keyLearnings,
-  },
-}: ExperienceWorkBoxProps) => {
+  } = experienceInfo;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -58,7 +55,7 @@ const ExperienceWorkBox = ({
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <BaseModalContent>
+        <StyledModalContent>
           <Image
             src={image}
             alt={`${name} image`}
@@ -83,18 +80,11 @@ const ExperienceWorkBox = ({
                   <Text decoration="underline">Main Areas of Experience</Text>
                   <Text>{technologies.long}</Text>
                 </Flex>
-                <Flex flexDir="column">
-                  <Text>Key Learnings</Text>
-                  <UnorderedList>
-                    {keyLearnings.map((learning, index) => (
-                      <ListItem key={index}>{learning}</ListItem>
-                    ))}
-                  </UnorderedList>
-                </Flex>
+                <HeadingList heading="Key Learnings" data={keyLearnings} />
               </Flex>
             </ModalBody>
           </Flex>
-        </BaseModalContent>
+        </StyledModalContent>
       </Modal>
     </MainContainer>
   );

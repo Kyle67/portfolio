@@ -24,11 +24,11 @@ export default function Home() {
         <NavBar />
         <SectionsContainer>
           <Hero />
-          <CustomDivider />
+          <Divider />
           <Experience />
-          <CustomDivider />
+          <Divider />
           <Projects />
-          <CustomDivider />
+          <Divider />
           <Technologies />
         </SectionsContainer>
       </MainContainer>
@@ -49,11 +49,5 @@ const SectionsContainer = chakra(Flex, {
     flexDirection: "column",
     margin: "50px",
     rowGap: "30px",
-  },
-});
-
-const CustomDivider = chakra(Divider, {
-  baseStyle: {
-    // margin: "30px",
   },
 });

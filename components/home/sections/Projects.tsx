@@ -1,24 +1,19 @@
 import { projects } from "@/consts/projects";
-import { Flex, Heading, chakra } from "@chakra-ui/react";
+import { Flex, chakra } from "@chakra-ui/react";
 import ProjectInfoBox from "../ProjectInfoBox";
-import Link from "next/link";
+import LinkHeading from "@/components/LinkHeading";
+import { SectionMainContainer } from "@/components/StyledComponents";
 
 const Projects = () => {
   return (
-    <Flex flexDir="column" alignItems="center">
-      <Link id="projects" href="#projects" style={{ alignSelf: "flex-start" }}>
-        <Heading>Projects</Heading>
-      </Link>
+    <SectionMainContainer>
+      <LinkHeading heading="Projects" />
       <ProjectsContainer>
-        {Object.entries(projects).map(([appName, projectInfo]) => (
-          <ProjectInfoBox
-            key={appName}
-            appName={appName}
-            projectInfo={projectInfo}
-          />
+        {projects.map((projectInfo) => (
+          <ProjectInfoBox key={projectInfo.appName} projectInfo={projectInfo} />
         ))}
       </ProjectsContainer>
-    </Flex>
+    </SectionMainContainer>
   );
 };
 

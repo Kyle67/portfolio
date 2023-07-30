@@ -3,10 +3,11 @@ import ExperienceEducationBox from "../ExperienceEducationBox";
 import ExperienceWorkBox from "../ExperienceWorkBox";
 import { educationData, experienceData } from "@/consts/experience";
 import Link from "next/link";
+import { SectionMainContainer } from "@/components/StyledComponents";
 
 const Experience = () => {
   return (
-    <Flex flexDir="column" alignItems="center" rowGap="20px">
+    <SectionMainContainer>
       <Link
         id="experience"
         href="#experience"
@@ -33,7 +34,7 @@ const Experience = () => {
           />
         ))}
       </ExperienceBoxContainer>
-    </Flex>
+    </SectionMainContainer>
   );
 };
 

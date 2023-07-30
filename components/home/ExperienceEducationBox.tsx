@@ -1,26 +1,25 @@
+import { EducationData, UnitObject } from "@/consts/experience";
 import {
   Flex,
-  ListItem,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalHeader,
   ModalOverlay,
   Text,
-  UnorderedList,
   chakra,
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { BaseModalContent } from "../BaseComponents";
-import { educationData } from "@/consts/experience";
+import HeadingList from "../HeadingList";
+import { StyledModalContent } from "../StyledComponents";
 
 interface ExperienceEducationBox {
-  experienceInfo: (typeof educationData)[number];
+  experienceInfo: EducationData;
 }
 
-const ExperienceEducationBox = ({
-  experienceInfo: {
+const ExperienceEducationBox = ({ experienceInfo }: ExperienceEducationBox) => {
+  const {
     course,
     majors,
     duration: { start, end },
@@ -28,8 +27,8 @@ const ExperienceEducationBox = ({
     keyUnits,
     keyLearnings,
     image,
-  },
-}: ExperienceEducationBox) => {
+  } = experienceInfo;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -57,9 +56,12 @@ const ExperienceEducationBox = ({
           ))}
         </Flex>
       </Flex>
+      {/**
+       * // TODO: Potentially refactor the modal into a reusable component. Should it just take the children which is the main content of the modal?
+       */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <BaseModalContent>
+        <StyledModalContent>
           <Image
             src={image}
             alt={`${course} image`}
@@ -87,28 +89,18 @@ const ExperienceEducationBox = ({
                   {start}-{end}
                 </Text>
                 <Text>{gpa} GPA (7 point scale)</Text>
-                <Flex flexDir="column">
-                  <Text>Key Units</Text>
-                  <UnorderedList>
-                    {keyUnits.map(({ unitCode, unitName }) => (
-                      <ListItem key={unitCode}>
-                        {unitCode} ({unitName})
-                      </ListItem>
-                    ))}
-                  </UnorderedList>
-                </Flex>
-                <Flex flexDir="column">
-                  <Text>Key Learnings</Text>
-                  <UnorderedList>
-                    {keyLearnings.map((learning, index) => (
-                      <ListItem key={index}>{learning}</ListItem>
-                    ))}
-                  </UnorderedList>
-                </Flex>
+                <HeadingList
+                  heading="Key Units"
+                  data={keyUnits}
+                  formatter={({ unitCode, unitName }: UnitObject) =>
+                    `${unitCode} ${unitName}`
+                  }
+                />
+                <HeadingList heading="Key Learnings" data={keyLearnings} />
               </Flex>
             </ModalBody>
           </Flex>
-        </BaseModalContent>
+        </StyledModalContent>
       </Modal>
     </MainContainer>
   );

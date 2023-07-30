@@ -1,4 +1,5 @@
 export interface ProjectInfo {
+  appName: string;
   description: string;
   extendedDescription: string;
   purpose: string;
@@ -10,8 +11,9 @@ export interface ProjectInfo {
   url: string;
 }
 
-export const projects: Record<string, ProjectInfo> = {
-  "Movie Web App": {
+export const projects: ProjectInfo[] = [
+  {
+    appName: "Movie Web App",
     description:
       "Scan through a list of available movies and find movies that you might like or match your criteria",
     extendedDescription:
@@ -26,7 +28,8 @@ export const projects: Record<string, ProjectInfo> = {
     image: "/projects/movieApp.png",
     url: "https://www.google.com.au",
   },
-  "Movie Mobile App": {
+  {
+    appName: "Movie Mobile App",
     description:
       "An extended version of the previous Movie Web App but for mobile users",
     extendedDescription:
@@ -39,7 +42,8 @@ export const projects: Record<string, ProjectInfo> = {
     image: "/projects/movieApp.png",
     url: "https://www.google.com.au",
   },
-  "Portfolio Site": {
+  {
+    appName: "Portfolio Site",
     description:
       "Mainly created to showcase my skills and give insight to my capabilities",
     extendedDescription:
@@ -60,4 +64,4 @@ export const projects: Record<string, ProjectInfo> = {
     image: "/projects/portfolio.png", // TODO: Add some shadow to the images?? Might make them pop a little more
     url: "https://www.google.com.au",
   },
-};
+];

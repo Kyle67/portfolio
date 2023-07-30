@@ -3,10 +3,11 @@ import StackTechnology from "../StackTechnology";
 import { technology } from "@/consts/technology";
 import ExtendedTechnologyInfo from "../ExtendedTechnologyInfo";
 import Link from "next/link";
+import { SectionMainContainer } from "@/components/StyledComponents";
 
 const Technologies = () => {
   return (
-    <Flex flexDir="column" alignItems="center" rowGap="40px">
+    <SectionMainContainer>
       <Link
         id="technology"
         href="#technology"
@@ -21,19 +22,14 @@ const Technologies = () => {
         <StackTechnology technology="Node.js" image="/technology/Nodejs.png" />
       </Flex>
       <Flex flexDir="column" w="100%" rowGap="50px">
-        {Object.entries(technology).map(
-          ([technology, { description, image, align }]) => (
-            <ExtendedTechnologyInfo
-              key={technology}
-              technology={technology}
-              description={description}
-              image={image}
-              align={align}
-            />
-          )
-        )}
+        {technology.map((technologyInfo) => (
+          <ExtendedTechnologyInfo
+            key={technologyInfo.name}
+            technologyInfo={technologyInfo}
+          />
+        ))}
       </Flex>
-    </Flex>
+    </SectionMainContainer>
   );
 };
 
