@@ -1,12 +1,14 @@
 import { Flex, chakra } from "@chakra-ui/react";
 import Link from "next/link";
 
+// TODO: Scroll to top button hovering in bottom right?
+
 const NavBar = () => (
   <NavBarContainer>
-    <Link href="#">Who am I?</Link>
-    <Link href="#">Experience</Link>
-    <Link href="#">Projects</Link>
-    <Link href="#">Technologies</Link>
+    <Link href="#about">Who am I?</Link>
+    <Link href="#experience">Experience</Link>
+    <Link href="#projects">Projects</Link>
+    <Link href="#technology">Technologies</Link>
   </NavBarContainer>
 );
 

@@ -1,10 +1,18 @@
+import Hero from "@/components/home/sections/Hero";
 import NavBar from "@/components/home/NavBar";
-import Terminal from "@/components/home/Terminal";
-import { Flex, Heading, Text, chakra } from "@chakra-ui/react";
+import { Divider, Flex, chakra } from "@chakra-ui/react";
 import Head from "next/head";
+import Experience from "@/components/home/sections/Experience";
+import Projects from "@/components/home/sections/Projects";
+import Technologies from "@/components/home/sections/Technologies";
+
+// TODO fonts - this can go in learned/challenges
+
+// TODO: Rng placed stars in the background?
 
 export default function Home() {
   return (
+    // TODO: this head info should be in _document
     <>
       <Head>
         <title>Kyle Milburn</title>
@@ -14,47 +22,15 @@ export default function Home() {
       </Head>
       <MainContainer>
         <NavBar />
-        <Heading color="whiteAlpha.800">Kyle Milburn</Heading>
-        <Flex>
-          <Text minW="40%" color="whiteAlpha.800">
-            Hi! My name is Kyle & I&apos;m a Web & Mobile developer who loves to
-            work on projects that will actually benefit its users. I pride
-            myself on keeping a high-quality standard across all projects &
-            believe that every project is a learning experience that expands my
-            knowledge and improves my future practices.
-          </Text>
-          <Terminal />
-          {/**
-           * // TODO: Fancy animation that slides in from right and shows the more info (probably a whole differnt page)
-           */}
-          <Text color="whiteAlpha.800" alignSelf="center">
-            More about me &gt;&gt;
-          </Text>
-        </Flex>
-        {/* <Flex flexDir="column">
-          <Text>
-            In 2013 my programming interest really sparked with my interest in
-            how games worked and even briefly looking at Minecraft server plugin
-            development (although I didn&apos;t get far at the time). Then for a
-            while my true interest in development kind of flatlined (aside from
-            constant consideration of how things worked and could hence be used
-            in gaming) until I started my double degree at university of
-            Mathematics & IT. Over the time of my degree I got to experience a
-            large number of languages including but not limited to (.....). I
-            think this combination of Maths & IT was invaluable to the skills
-            and processes it provided for my development processes. Some of
-            these key skills include critical thinking and .... .
-          </Text>
-          <Text>
-            This then only further propelled my interest in development as I
-            decided to persue a Masters in IT majoring in Software Development.
-            This not only allowed me to further my understanding and attain
-            experience in key real world practices via Cloud Computing, Real
-            world projects & a Web & Mobile development unit which real ignited
-            my passion for web development (which prior to that I hadn&apos;t
-            been all that interested in.)
-          </Text>
-        </Flex> */}
+        <SectionsContainer>
+          <Hero />
+          <CustomDivider />
+          <Experience />
+          <CustomDivider />
+          <Projects />
+          <CustomDivider />
+          <Technologies />
+        </SectionsContainer>
       </MainContainer>
     </>
   );
@@ -64,5 +40,20 @@ const MainContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
     backgroundColor: "#0E0D16",
+    color: "whiteAlpha.900",
+  },
+});
+
+const SectionsContainer = chakra(Flex, {
+  baseStyle: {
+    flexDirection: "column",
+    margin: "50px",
+    rowGap: "30px",
+  },
+});
+
+const CustomDivider = chakra(Divider, {
+  baseStyle: {
+    // margin: "30px",
   },
 });

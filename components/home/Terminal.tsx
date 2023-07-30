@@ -8,13 +8,15 @@ const terminalText = [
   "Fetching Bio %",
   "Adding Memes %",
   "Fetching Gaming %",
-  "Eating Food %",
+  "Grabbing Food %",
   "Playing Games %",
-  "Checking Keyboards %",
+  "Modding Keyboards %",
   "Done",
 ];
 
 // TODO: Set a height for the terminal - When it reaches the bottom, it becomes scrollable and hides the top
+
+// TODO: Add blinking line to show active
 
 const terminalGeneralDelay = 0; // 50
 const terminalLoadingDelay = 0; // 10
@@ -118,10 +120,12 @@ const Terminal = () => {
     textRef.current.scrollTop = textRef.current.scrollHeight; // TODO: Should be able to scroll back up to see previous commands & such
   }, [text, isWaiting]);
 
+  // TODO: Could add bar to top of box like a window (i.e. have Command Prompt in title in bar at top)
+
   return (
     <Flex
       ref={textRef}
-      bgColor="#141414"
+      bgColor="#141414" // TODO: Move this to a styled component
       border="1px solid black"
       flexGrow={1}
       mx="20px"
