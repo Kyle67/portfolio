@@ -1,17 +1,28 @@
 import { Flex, Input, Text, chakra } from "@chakra-ui/react";
+import { Share_Tech } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
+import {
+  LiaWindowClose,
+  LiaWindowMaximize,
+  LiaWindowMinimize,
+} from "react-icons/lia";
 import NewLineText from "./NewLineText";
+
+const terminalFont = Share_Tech({
+  weight: "400",
+  subsets: [],
+});
 
 const terminalText = [
   "> Running startup script",
   "yarn",
-  "Fetching Bio %",
+  "Retrieving Bio %",
   "Adding Memes %",
-  "Fetching Gaming %",
-  "Grabbing Food %",
-  "Playing Games %",
+  "Fetching Food %",
+  "Grinding Games %",
   "Modding Keyboards %",
   "Done",
+  "Type a command or `help`",
 ];
 
 // TODO: Set a height for the terminal - When it reaches the bottom, it becomes scrollable and hides the top
@@ -37,7 +48,7 @@ const Terminal = () => {
       setText(
         (prev) =>
           prev +
-          `You may type one of the following commands:
+          `Available commands include:
     - help
     - wow
     - test
@@ -139,34 +150,42 @@ const Terminal = () => {
   // TODO: Could add bar to top of box like a window (i.e. have Command Prompt in title in bar at top)
 
   return (
-    <TerminalContainer
-      ref={textRef}
-      onClick={() => {
-        setRunTerminal(true);
-      }}
-    >
-      {runTerminal ? (
-        <NewLineText text={text} />
-      ) : (
-        <Text alignSelf="center" mx="auto">
-          Click to start...
-        </Text>
-      )}
-      {!isWaiting && (
-        <Flex>
-          <Text>{">"}</Text>
-          <Input
-            autoFocus
-            variant="unstyled"
-            paddingLeft="5px"
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-            onKeyUp={(key) => {
-              if (key.code === "Enter") runCommand();
-            }}
-          />
-        </Flex>
-      )}
+    <TerminalContainer flexDir="column">
+      <WindowTopBar>
+        <LiaWindowMinimize size={20} />
+        <LiaWindowMaximize size={20} />
+        <LiaWindowClose size={20} />
+      </WindowTopBar>
+      <CommandWindowContainer
+        className={terminalFont.className}
+        ref={textRef}
+        onClick={() => {
+          setRunTerminal(true);
+        }}
+      >
+        {runTerminal ? (
+          <NewLineText text={text} />
+        ) : (
+          <Text alignSelf="center" mx="auto">
+            Click to start...
+          </Text>
+        )}
+        {!isWaiting && (
+          <Flex>
+            <Text>{">"}</Text>
+            <Input
+              autoFocus
+              variant="unstyled"
+              paddingLeft="5px"
+              value={command}
+              onChange={(e) => setCommand(e.target.value)}
+              onKeyUp={(key) => {
+                if (key.code === "Enter") runCommand();
+              }}
+            />
+          </Flex>
+        )}
+      </CommandWindowContainer>
     </TerminalContainer>
   );
 };
@@ -175,12 +194,26 @@ export default Terminal;
 
 const TerminalContainer = chakra(Flex, {
   baseStyle: {
-    backgroundColor: "#141414",
-    border: "1px solid black",
-    flexGrow: 1,
     marginX: "20px",
     width: "2000px",
     height: "300px",
+    boxShadow: "5px 5px 7px 2px #00000050",
+  },
+});
+
+const WindowTopBar = chakra(Flex, {
+  baseStyle: {
+    backgroundColor: "#000000",
+    height: "20px",
+    justifyContent: "flex-end",
+  },
+});
+
+const CommandWindowContainer = chakra(Flex, {
+  baseStyle: {
+    backgroundColor: "#0d0d0d",
+    border: "1px solid black",
+    flexGrow: 1,
     color: "whiteAlpha.800",
     flexDirection: "column",
     maxHeight: "300px",

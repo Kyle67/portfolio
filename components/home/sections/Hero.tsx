@@ -1,5 +1,7 @@
 import LinkHeading from "@/components/LinkHeading";
-import { Flex, Text, chakra } from "@chakra-ui/react";
+import { Flex, Text, chakra, keyframes } from "@chakra-ui/react";
+import { Comfortaa, Fredericka_the_Great } from "next/font/google";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import Terminal from "../Terminal";
 
@@ -10,17 +12,46 @@ import Terminal from "../Terminal";
  * Fullstack Web & Mobile Developer. Gamer at heart. Lover of keyboards
  */
 
+const heroBodyFont = Comfortaa({
+  weight: "400",
+  subsets: [],
+});
+
+const heroTitleFont = Fredericka_the_Great({
+  weight: "400",
+  subsets: [],
+});
+
 const Hero = () => {
   return (
     <MainContainer>
-      <Flex flexDir="column" rowGap="20px">
-        <LinkHeading heading="About" customText="Kyle Milburn" />
-        <Text color="whiteAlpha.800">
-          Hi! My name is Kyle and I&apos;m a Web & Mobile developer. I pride
-          myself on keeping a high-quality standard across all projects &
-          believe that every project is a learning experience that expands my
+      <Flex flexDir="column" rowGap="20px" alignSelf="center">
+        <LinkHeading heading="About" font={heroTitleFont.className}>
+          <Flex columnGap="10px">
+            <Text className={heroTitleFont.className} fontSize="28px" data-peer>
+              Hi, I&apos;m Kyle
+            </Text>
+            <AnimatedWave fontSize="28px">👋</AnimatedWave>
+          </Flex>
+        </LinkHeading>
+        <Text>Web & Mobile Developer</Text>
+        <Text color="whiteAlpha.800" className={heroBodyFont.className}>
+          I pride myself on keeping a high-quality standard across all projects
+          & believe that every project is a learning experience that expands my
           knowledge and improves my future practices.
         </Text>
+        <Flex fontSize="32px" columnGap="7px">
+          <AiFillGithub
+            onClick={() => window.open("https://github.com/Kyle67", "_blank")}
+            cursor="pointer"
+          />
+          <AiFillLinkedin
+            onClick={() =>
+              window.open("https://www.linkedin.com/in/kylemilburn/", "_blank")
+            }
+            cursor="pointer"
+          />
+        </Flex>
       </Flex>
 
       <Terminal />
@@ -68,5 +99,28 @@ export default Hero;
 const MainContainer = chakra(Flex, {
   baseStyle: {
     margin: "30px",
+  },
+});
+
+const rotateLoop = keyframes`
+0% {
+  transform: rotate(0deg);
+}
+50% {
+  transform: rotate(50deg);
+}
+100% {
+  transform: rotate(0deg)
+}
+`;
+
+const AnimatedWave = chakra(Text, {
+  baseStyle: {
+    transformOrigin: "bottom right",
+    transition: "transform 0.3s ease",
+    width: "fit-content",
+    _peerHover: {
+      animation: `${rotateLoop} 0.6s linear infinite`,
+    },
   },
 });

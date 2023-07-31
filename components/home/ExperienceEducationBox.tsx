@@ -110,7 +110,7 @@ export default ExperienceEducationBox;
 
 const MainContainer = chakra(Flex, {
   baseStyle: {
-    padding: "30px",
+    padding: "30px", // TODO: Do all the outlines have the same styling - refactor this into a reusable component
     border: "1px solid #41424B",
     borderRadius: "20px",
     _hover: { cursor: "pointer" },

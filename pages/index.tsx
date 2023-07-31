@@ -1,10 +1,16 @@
-import Hero from "@/components/home/sections/Hero";
 import NavBar from "@/components/home/NavBar";
-import { Divider, Flex, chakra } from "@chakra-ui/react";
-import Head from "next/head";
 import Experience from "@/components/home/sections/Experience";
+import Hero from "@/components/home/sections/Hero";
 import Projects from "@/components/home/sections/Projects";
 import Technologies from "@/components/home/sections/Technologies";
+import { Divider, Flex, chakra } from "@chakra-ui/react";
+import Head from "next/head";
+
+import { Rubik } from "next/font/google";
+const mainFont = Rubik({
+  weight: "400",
+  subsets: [],
+});
 
 // TODO fonts - this can go in learned/challenges
 
@@ -20,15 +26,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/websiteIcon.png" />
       </Head>
-      <MainContainer>
+      <MainContainer className={mainFont.className}>
         <NavBar />
         <SectionsContainer>
           <Hero />
-          <Divider />
+          <CustomDivider />
           <Experience />
-          <Divider />
+          <CustomDivider />
           <Projects />
-          <Divider />
+          <CustomDivider />
           <Technologies />
         </SectionsContainer>
       </MainContainer>
@@ -39,7 +45,8 @@ export default function Home() {
 const MainContainer = chakra(Flex, {
   baseStyle: {
     flexDirection: "column",
-    backgroundColor: "#0E0D16",
+    background:
+      "radial-gradient(circle, rgba(23,20,65,1) 0%, rgba(26,27,87,1) 50%, rgba(12,51,87,1) 100%)",
     color: "whiteAlpha.900",
   },
 });
@@ -49,5 +56,13 @@ const SectionsContainer = chakra(Flex, {
     flexDirection: "column",
     margin: "50px",
     rowGap: "30px",
+  },
+});
+
+const CustomDivider = chakra(Divider, {
+  baseStyle: {
+    borderColor: "transparent",
+    borderWidth: "0px",
+    boxShadow: "0px 0px 4px 0.5px #5c76c4",
   },
 });

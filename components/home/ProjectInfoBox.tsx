@@ -45,7 +45,13 @@ const ProjectInfoBox = ({ projectInfo }: ProjectInfoBoxProps) => {
 
   return (
     <MainContainer onClick={onOpen}>
-      <Image src={image} alt={`${appName} image`} width={200} height={100} />
+      <Image
+        src={image}
+        alt={`${appName} image`}
+        width={200}
+        height={100}
+        style={{ boxShadow: "0 0 10px 0px #FFFFFF80" }}
+      />
       <Flex rowGap="20px" flexDir="column">
         <Text fontWeight="bold">{appName}</Text>
         <Text>{description}</Text>
@@ -59,7 +65,7 @@ const ProjectInfoBox = ({ projectInfo }: ProjectInfoBoxProps) => {
         <StyledModalContent>
           <Flex flexDir="column" rowGap="30px" alignItems="center">
             <Image
-              src={image}
+              src={image} // TODO: Move to styled chakra component
               alt={`${appName} image`}
               width={200}
               height={100}
