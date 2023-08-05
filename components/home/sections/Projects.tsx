@@ -1,13 +1,13 @@
+import LinkHeading from "@/components/LinkHeading";
+import { SectionMainContainer } from "@/components/StyledComponents";
 import { projects } from "@/consts/projects";
 import { Flex, chakra } from "@chakra-ui/react";
 import ProjectInfoBox from "../ProjectInfoBox";
-import LinkHeading from "@/components/LinkHeading";
-import { SectionMainContainer } from "@/components/StyledComponents";
 
 const Projects = () => {
   return (
     <SectionMainContainer>
-      <LinkHeading heading="Projects" />
+      <LinkHeading heading="Projects" customText="💡 Projects" />
       <ProjectsContainer>
         {projects.map((projectInfo) => (
           <ProjectInfoBox key={projectInfo.appName} projectInfo={projectInfo} />

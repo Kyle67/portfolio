@@ -18,3 +18,14 @@ export const SectionMainContainer = chakra(Flex, {
     rowGap: "30px",
   },
 });
+
+export const InfoBoxContainer = chakra(Flex, {
+  baseStyle: {
+    padding: "30px",
+    boxShadow: "3px 3px 5px 1px black, 0px 0px 3px 1px #000052 inset",
+    borderRadius: "20px",
+    _hover: { cursor: "pointer" },
+    columnGap: "30px",
+    width: "700px",
+  },
+});

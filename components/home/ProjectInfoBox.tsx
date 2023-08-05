@@ -7,14 +7,13 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  chakra,
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineGithub } from "react-icons/ai";
 import HeadingList from "../HeadingList";
-import { StyledModalContent } from "../StyledComponents";
+import { InfoBoxContainer, StyledModalContent } from "../StyledComponents";
 
 interface ProjectInfoBoxProps {
   projectInfo: ProjectInfo;
@@ -44,8 +43,14 @@ const ProjectInfoBox = ({ projectInfo }: ProjectInfoBoxProps) => {
   // TODO: Opening modal has extra padding added to right of screen
 
   return (
-    <MainContainer onClick={onOpen}>
-      <Image src={image} alt={`${appName} image`} width={200} height={100} />
+    <InfoBoxContainer onClick={onOpen}>
+      <Image
+        src={image}
+        alt={`${appName} image`}
+        width={200}
+        height={100}
+        style={{ boxShadow: "0 0 10px 0px #FFFFFF80" }}
+      />
       <Flex rowGap="20px" flexDir="column">
         <Text fontWeight="bold">{appName}</Text>
         <Text>{description}</Text>
@@ -59,7 +64,7 @@ const ProjectInfoBox = ({ projectInfo }: ProjectInfoBoxProps) => {
         <StyledModalContent>
           <Flex flexDir="column" rowGap="30px" alignItems="center">
             <Image
-              src={image}
+              src={image} // TODO: Move to styled chakra component
               alt={`${appName} image`}
               width={200}
               height={100}
@@ -106,19 +111,8 @@ const ProjectInfoBox = ({ projectInfo }: ProjectInfoBoxProps) => {
           <ModalCloseButton />
         </StyledModalContent>
       </Modal>
-    </MainContainer>
+    </InfoBoxContainer>
   );
 };
 
 export default ProjectInfoBox;
-
-const MainContainer = chakra(Flex, {
-  baseStyle: {
-    padding: "30px",
-    border: "1px solid #41424B",
-    borderRadius: "20px",
-    _hover: { cursor: "pointer" },
-    columnGap: "30px",
-    width: "700px",
-  },
-});

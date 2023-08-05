@@ -8,7 +8,7 @@ import ExperienceWorkBox from "../ExperienceWorkBox";
 const Experience = () => {
   return (
     <SectionMainContainer>
-      <LinkHeading heading="Experience" />
+      <LinkHeading heading="Experience" customText="🏛️ Experience" />
       <ExperienceBoxContainer>
         {experienceData.map((experienceInfo) => (
           <ExperienceWorkBox
@@ -17,7 +17,7 @@ const Experience = () => {
           />
         ))}
       </ExperienceBoxContainer>
-      <LinkHeading heading="Education" />
+      <LinkHeading heading="Education" customText="📚 Education" />
       <ExperienceBoxContainer>
         {educationData.map((experienceInfo) => (
           <ExperienceEducationBox
