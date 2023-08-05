@@ -31,6 +31,8 @@ const terminalText = [
 
 // TODO: Clicking anywhere in the box should focus the textinput used as the command line
 
+// TODO: maybe clicking the x closes it and shows a desktop icon instead. Clicking on that then reopens it
+
 const terminalGeneralDelay = 0; // 50
 const terminalLoadingDelay = 0; // 10
 

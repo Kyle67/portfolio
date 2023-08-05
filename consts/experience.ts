@@ -27,7 +27,7 @@ export const experienceData: ExperienceData[] = [
   {
     name: "Labrys",
     position: "Junior Software Developer",
-    duration: { start: 2023, end: "Current" },
+    duration: { start: 2022, end: "Current" },
     technologies: {
       short:
         "Web2, Mobile Development, Expo, React Native, MongoDB, Live Release Lifecycle",

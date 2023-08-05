@@ -21,5 +21,5 @@ const NavBarContainer = chakra(Flex, {
     h: "50px",
     alignItems: "center",
     color: "whiteAlpha.900",
-  },
+  }, // TODO: A show on this stuff might look okay. Sort of more like a dark cloud behind it though
 });

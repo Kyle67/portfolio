@@ -8,7 +8,7 @@ import StackTechnology from "../StackTechnology";
 const Technologies = () => {
   return (
     <SectionMainContainer>
-      <LinkHeading heading="Technology" customText="Technologies" />
+      <LinkHeading heading="Technology" customText="💻 Technologies" />
       <Flex columnGap="30px">
         <StackTechnology technology="MongoDB" image="/technology/MongoDB.png" />
         <StackTechnology technology="Express" image="/technology/Express.png" />

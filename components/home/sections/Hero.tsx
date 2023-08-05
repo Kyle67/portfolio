@@ -34,13 +34,13 @@ const Hero = () => {
             <AnimatedWave fontSize="28px">👋</AnimatedWave>
           </Flex>
         </LinkHeading>
-        <Text>Web & Mobile Developer</Text>
+        <Text>Fullstack Web & Mobile Developer</Text>
         <Text color="whiteAlpha.800" className={heroBodyFont.className}>
-          I pride myself on keeping a high-quality standard across all projects
-          & believe that every project is a learning experience that expands my
-          knowledge and improves my future practices.
+          I pride myself on high-quality standards across all projects & believe
+          that every project is a learning experience that expands my knowledge
+          and improves my future practices.
         </Text>
-        <Flex fontSize="32px" columnGap="7px">
+        <Flex fontSize="32px" columnGap="7px" opacity="30%">
           <AiFillGithub
             onClick={() => window.open("https://github.com/Kyle67", "_blank")}
             cursor="pointer"
